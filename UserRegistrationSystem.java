@@ -90,9 +90,23 @@ public class UserRegistrationSystem {
         Matcher matcher = pattern.matcher(password);
         if (matcher.find()){
             System.out.println("Password has 1 or more Numeric Character");
+            checkPasswordSpecialCharacters(password);
         }
         else{
             System.out.println("Password does not have any Numeric Characters");
+            System.out.print("Re-");
+            passwordInput();
+        }
+    }
+
+    public static void checkPasswordSpecialCharacters(String password){
+        Pattern pattern = Pattern.compile("[~!@#$%^&*()_+{}\\\\[\\\\]:;,.<>/?-]{1}");
+        Matcher matcher = pattern.matcher(password);
+        if (matcher.find()){
+            System.out.println("Password has 1 special character");
+        }
+        else{
+            System.out.println("Password does not have any special Character");
             System.out.print("Re-");
             passwordInput();
         }
