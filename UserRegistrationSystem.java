@@ -7,8 +7,7 @@ public class UserRegistrationSystem {
 
     public static void main(String[] args) {
 
-        String mobileNumber = mobileNumberInputAndValidate();
-        System.out.println(mobileNumber +" is an acceptable Mobile Number");
+        passwordInput();
     }
 
     public static String userFirstNameInputandValidation() {
@@ -49,6 +48,25 @@ public class UserRegistrationSystem {
         else {
             mobileNumber = mobileNumberInputAndValidate();
             return mobileNumber;
+        }
+    }
+
+    public static void passwordInput(){
+        System.out.println("Enter Password");
+        String password = scanner.nextLine();
+        checkPasswordLength(password);
+    }
+
+    public static void checkPasswordLength(String password){
+        Pattern pattern = Pattern.compile("[~!@#$%^&*()_+{}\\\\[\\\\]:;,.<>/?-[\\w]]{8,}");
+        Matcher matcher = pattern.matcher(password);
+        if (matcher.find()){
+            System.out.println("Password Length is 8 or more characters");
+        }
+        else{
+            System.out.println("Password Length is not atleast 8 characters in Length");
+            System.out.print("Re-");
+            passwordInput();
         }
     }
 
