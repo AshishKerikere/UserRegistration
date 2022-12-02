@@ -62,6 +62,7 @@ public class UserRegistrationSystem {
         Matcher matcher = pattern.matcher(password);
         if (matcher.find()){
             System.out.println("Password Length is 8 or more characters");
+            passwordUpperCaseCharacters(password);
         }
         else{
             System.out.println("Password Length is not atleast 8 characters in Length");
@@ -70,4 +71,16 @@ public class UserRegistrationSystem {
         }
     }
 
+    public static void passwordUpperCaseCharacters(String password){
+        Pattern pattern = Pattern.compile("[A-Z]+");
+        Matcher matcher = pattern.matcher(password);
+        if (matcher.find()){
+            System.out.println("Password has 1 or more Upper Case Characters");
+        }
+        else{
+            System.out.println("Password does not have UpperCase characters");
+            System.out.print("Re-");
+            passwordInput();
+        }
+    }
 }
