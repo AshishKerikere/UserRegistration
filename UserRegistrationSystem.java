@@ -7,6 +7,18 @@ public class UserRegistrationSystem {
 
     public static void main(String[] args) {
 
+        String userFirstName = userFirstNameInputandValidation();
+        System.out.println(userFirstName +" is a valid First User Name.");
+
+        String userLastName = userLastNameInputandValidation();
+        System.out.println(userLastName +" is a valid Last User Name.");
+
+        String emailAddress = UserEmailId.evaluateTypeAndCheck();
+        System.out.println("This is correct email" +emailAddress);
+
+        String mobileNumber = mobileNumberInputAndValidate();
+        System.out.println(mobileNumber +" is an acceptable Mobile Number");
+
         passwordInput();
     }
 
