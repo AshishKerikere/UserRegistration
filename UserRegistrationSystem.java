@@ -7,8 +7,8 @@ public class UserRegistrationSystem {
 
     public static void main(String[] args) {
 
-        String emailAddress = UserEmailId.evaluateTypeAndCheck();
-        System.out.println("This is correct email" +emailAddress);
+        String mobileNumber = mobileNumberInputAndValidate();
+        System.out.println(mobileNumber +" is an acceptable Mobile Number");
     }
 
     public static String userFirstNameInputandValidation() {
@@ -35,6 +35,20 @@ public class UserRegistrationSystem {
         else {
             userLastName = userLastNameInputandValidation();
             return userLastName;
+        }
+    }
+
+    public static String mobileNumberInputAndValidate() {
+        System.out.println("Enter the Mobile Number");
+        String mobileNumber = scanner.nextLine();
+        Pattern pattern = Pattern.compile("^[9]{1}[1]{1}[\\s]{1}[9876]{1}[0-9]{9}$");
+        Matcher matcher = pattern.matcher(mobileNumber);
+        if(matcher.find()){
+            return mobileNumber;
+        }
+        else {
+            mobileNumber = mobileNumberInputAndValidate();
+            return mobileNumber;
         }
     }
 
