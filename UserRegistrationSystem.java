@@ -6,8 +6,9 @@ public class UserRegistrationSystem {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String userLastName = userLastNameInputandValidation();
-        System.out.println(userLastName +" is a valid Last User Name.");
+
+        String emailAddress = UserEmailId.evaluateTypeAndCheck();
+        System.out.println("This is correct email" +emailAddress);
     }
 
     public static String userFirstNameInputandValidation() {
