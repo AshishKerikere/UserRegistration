@@ -6,8 +6,8 @@ public class UserRegistrationSystem {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String userFirstName = userFirstNameInputandValidation();
-        System.out.println(userFirstName +" is a valid First User Name.");
+        String userLastName = userLastNameInputandValidation();
+        System.out.println(userLastName +" is a valid Last User Name.");
     }
 
     public static String userFirstNameInputandValidation() {
@@ -20,6 +20,20 @@ public class UserRegistrationSystem {
         } else {
             userFirstName = userFirstNameInputandValidation();
             return userFirstName;
+        }
+    }
+
+    public static String userLastNameInputandValidation() {
+        System.out.println("Enter User Last Name");
+        String userLastName = scanner.next();
+        Pattern pattern = Pattern.compile("^[A-Z][a-z]{3,}");
+        Matcher matcher = pattern.matcher(userLastName);
+        if(matcher.find()){
+            return userLastName;
+        }
+        else {
+            userLastName = userLastNameInputandValidation();
+            return userLastName;
         }
     }
 
