@@ -76,9 +76,23 @@ public class UserRegistrationSystem {
         Matcher matcher = pattern.matcher(password);
         if (matcher.find()){
             System.out.println("Password has 1 or more Upper Case Characters");
+            checkPasswordNumericCount(password);
         }
         else{
             System.out.println("Password does not have UpperCase characters");
+            System.out.print("Re-");
+            passwordInput();
+        }
+    }
+
+    public static void checkPasswordNumericCount(String password){
+        Pattern pattern = Pattern.compile("[0-9]+");
+        Matcher matcher = pattern.matcher(password);
+        if (matcher.find()){
+            System.out.println("Password has 1 or more Numeric Character");
+        }
+        else{
+            System.out.println("Password does not have any Numeric Characters");
             System.out.print("Re-");
             passwordInput();
         }
