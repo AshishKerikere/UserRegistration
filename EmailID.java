@@ -1,9 +1,9 @@
-import java.util.Scanner;
+import java.util.Scanner;     // return emailAddress;  // throw new EmailIDException();
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class EmailId {
 
-    public static String evaluateTypeAndCheck(String emailAddress) {
+    public static String evaluateTypeAndCheck(String emailAddress) throws EmailIDException {
 
         int atSymbolCount = 0;
         int dotSymbolCount = 0;
@@ -23,40 +23,37 @@ public class EmailId {
 
         if (atSymbolCount == 1 && dotSymbolCount == 1){
             if (atSymbolLocation < dotSymbolLocations[0]){
-                if (mandatoryPrefixCheck(emailAddress, atSymbolLocation, dotSymbolLocations)
+                if (!(mandatoryPrefixCheck(emailAddress, atSymbolLocation, dotSymbolLocations)
                         && mandatoryDomainCheck(emailAddress, atSymbolLocation, dotSymbolLocations)
-                        && mandatoryString3Check(emailAddress, dotSymbolLocations, 1)){
+                        && mandatoryString3Check(emailAddress, dotSymbolLocations, 1))){
 
-                    return "Correct Input";
+                    throw new EmailIDException();
                 }
-                else{
-
-                    return "Wrong Input";
-                }
+                else{return emailAddress;}
             }
-            else {
+           else {
 
-                return "Wrong Input";
+                return emailAddress;
             }
         }
 
         else if (atSymbolCount == 1 && dotSymbolCount == 3) {
             if (atSymbolLocation > dotSymbolLocations[0] && atSymbolLocation < dotSymbolLocations[1]){
-                if (mandatoryPrefixCheck(emailAddress, atSymbolLocation, dotSymbolLocations) &&
+                if (!(mandatoryPrefixCheck(emailAddress, atSymbolLocation, dotSymbolLocations) &&
                         optionalString1Check(emailAddress, atSymbolLocation, dotSymbolLocations)
                         && mandatoryDomainCheck(emailAddress, atSymbolLocation, dotSymbolLocations)
-                        && optionalString2Check(emailAddress) && mandatoryString3Check(emailAddress,dotSymbolLocations, 4)){
+                        && optionalString2Check(emailAddress) && mandatoryString3Check(emailAddress,dotSymbolLocations, 4))){
 
-                    return "Correct Input";
+                    throw new EmailIDException();
                 }
-                else {
+               else {
 
-                    return "Wrong Input";
+                    return emailAddress;
                 }
             }
             else {
 
-                return "Wrong Input";
+                return emailAddress;
             }
         }
 
@@ -64,42 +61,43 @@ public class EmailId {
         else if (atSymbolCount == 1 && dotSymbolCount == 2){
 
             if(dotSymbolLocations[0] < atSymbolLocation && atSymbolLocation < dotSymbolLocations[1]){
-                if (mandatoryPrefixCheck(emailAddress, atSymbolLocation, dotSymbolLocations) &&
+                if (!(mandatoryPrefixCheck(emailAddress, atSymbolLocation, dotSymbolLocations) &&
                         optionalString1Check(emailAddress, atSymbolLocation, dotSymbolLocations) &&
                         mandatoryDomainCheck(emailAddress, atSymbolLocation, dotSymbolLocations) &&
-                        mandatoryString3Check(emailAddress, dotSymbolLocations, 2)){
+                        mandatoryString3Check(emailAddress, dotSymbolLocations, 2))){
 
-                    return "Correct Input";
+                    throw new EmailIDException();
                 }
                 else {
 
-                    return "Wrong Input";
+                    return emailAddress;
                 }
             }
 
-            else if(atSymbolLocation < dotSymbolLocations[0]){
-                if (mandatoryPrefixCheck(emailAddress, atSymbolLocation, dotSymbolLocations)
+            else if(atSymbolLocation < dotSymbolLocations[0]) {
+                if (!(mandatoryPrefixCheck(emailAddress, atSymbolLocation, dotSymbolLocations)
                         && mandatoryDomainCheck(emailAddress, atSymbolLocation, dotSymbolLocations)
-                        && optionalString2Check(emailAddress) && mandatoryString3Check(emailAddress,dotSymbolLocations, 3)){
+                        && optionalString2Check(emailAddress) && mandatoryString3Check(emailAddress, dotSymbolLocations, 3))) {
 
-                    return "Correct Input";
-                }
-                else {
+                    throw new EmailIDException();
+                } else {
 
-                    return "Wrong Input";
+                    return emailAddress;
                 }
             }
 
             else{
 
-                return "Wrong Input";
+                return emailAddress;
             }
         }
 
         else {
 
-            return "Wrong Input";
+            return emailAddress;
         }
+
+
     }
     //UC1
     public static boolean mandatoryPrefixCheck(String emailAddress, int atSymbolLocation, int[] dotSymbolLocations){
